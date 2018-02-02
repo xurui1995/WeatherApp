@@ -1,4 +1,4 @@
-package xur.com.weatherapp
+package xur.com.weatherapp.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup

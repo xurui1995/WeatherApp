@@ -1,9 +1,12 @@
-package xur.com.weatherapp
+package xur.com.weatherapp.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import org.jetbrains.anko.find
+import xur.com.weatherapp.R
+import xur.com.weatherapp.adapters.ForecastListAdapter
 
 class MainActivity : AppCompatActivity() {
     private val items = listOf(
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val forecastList = findViewById<RecyclerView>(R.id.forecast_list) as RecyclerView
+        val forecastList = find<RecyclerView>(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
         forecastList.adapter = ForecastListAdapter(items)
     }
