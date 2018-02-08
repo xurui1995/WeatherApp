@@ -11,7 +11,6 @@ import org.jetbrains.anko.uiThread
 import xur.com.weatherapp.R
 import xur.com.weatherapp.adapters.ForecastListAdapter
 import xur.com.weatherapp.domain.commands.RequestForecastCommand
-import xur.com.weatherapp.domain.model.Forecast
 
 class MainActivity : AppCompatActivity() {
 /*    private val items = listOf(
@@ -36,11 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         doAsync {
             val result = RequestForecastCommand("94043").execute()
-            uiThread { forecastList.adapter =  ForecastListAdapter(result, object : ForecastListAdapter.OnItemClickListener{
-                override fun invoke(forecast: Forecast) {
-                    toast(forecast.date)
-                }
-            })}
+            uiThread { forecastList.adapter =  ForecastListAdapter(result) {toast(it.date)}}
         }
     }
 }

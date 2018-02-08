@@ -14,7 +14,7 @@ import xur.com.weatherapp.ui.utils.inflate
  * Created by xur on 2018/1/30.
  */
 class ForecastListAdapter(private val weekForecast: ForecastList,
-                          private val itemClick: ForecastListAdapter.OnItemClickListener) :
+                          private val itemClick: (Forecast) -> Unit) :
         RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.item_forecast)
@@ -27,7 +27,7 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
         holder.bindForecast(weekForecast[position])
     }
 
-    class ViewHolder(itemView: View, private val itemClick: OnItemClickListener): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val itemClick: (Forecast) -> Unit): RecyclerView.ViewHolder(itemView) {
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
@@ -38,9 +38,5 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
-    }
-
-    interface OnItemClickListener {
-        operator fun invoke(forecast: Forecast)
     }
 }
