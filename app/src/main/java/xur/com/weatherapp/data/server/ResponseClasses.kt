@@ -1,4 +1,4 @@
-package xur.com.weatherapp.data
+package xur.com.weatherapp.data.server
 
 /**
  * Created by xur on 2018/2/4.

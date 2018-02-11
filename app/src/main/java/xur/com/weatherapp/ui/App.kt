@@ -1,7 +1,7 @@
 package xur.com.weatherapp.ui
 
 import android.app.Application
-import xur.com.weatherapp.ui.utils.DelegatesExt
+import xur.com.weatherapp.extensions.DelegatesExt
 
 /**
  * Created by xur on 2018/2/8.

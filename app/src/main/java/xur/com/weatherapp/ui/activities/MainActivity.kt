@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
                 "APPID=15646a06818f61f7b8d7823ca833e1ce&q=94043&mode=json&units=metric&cnt=7"*/
 
         doAsync {
-            val result = RequestForecastCommand("94043").execute()
-            uiThread { forecastList.adapter =  ForecastListAdapter(result) {toast(it.date)}}
+            val result = RequestForecastCommand(94043).execute()
+            uiThread { forecastList.adapter =  ForecastListAdapter(result) {toast(it.description)}}
         }
     }
 }

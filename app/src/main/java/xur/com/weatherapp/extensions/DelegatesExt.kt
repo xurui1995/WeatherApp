@@ -1,4 +1,4 @@
-package xur.com.weatherapp.ui.utils
+package xur.com.weatherapp.extensions
 
 import kotlin.reflect.KProperty
 
