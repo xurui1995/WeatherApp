@@ -1,7 +1,5 @@
-package xur.com.weatherapp.domain.mappers
+package xur.com.weatherapp.data.server
 
-import xur.com.weatherapp.data.server.Forecast
-import xur.com.weatherapp.data.server.ForecastResult
 import xur.com.weatherapp.domain.model.ForecastList
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -9,8 +7,8 @@ import xur.com.weatherapp.domain.model.Forecast as ModelForecast
 /**
  * Created by xur on 2018/2/4.
  */
-class ForecastDataMapper {
-    fun convertFromDataModel(zipCode: Long, forecast: ForecastResult): ForecastList {
+class ServerDataMapper {
+    fun convertToDomain(zipCode: Long, forecast: ForecastResult): ForecastList {
         return ForecastList(zipCode, forecast.city.name, forecast.city.country, convertForecastListToDomain(forecast.list))
     }
 

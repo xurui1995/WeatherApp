@@ -2,6 +2,7 @@ package xur.com.weatherapp.data.db
 
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
+import xur.com.weatherapp.domain.datasource.ForecastDataSource
 import xur.com.weatherapp.domain.model.ForecastList
 import xur.com.weatherapp.extensions.clear
 import xur.com.weatherapp.extensions.parseList
@@ -12,8 +13,8 @@ import xur.com.weatherapp.extensions.toVarargArray
  * Created by xur on 2018/2/11.
  */
 class ForecastDb(private val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.instance,
-                 private val dataMapper: DbDataMapper = DbDataMapper()) {
-    fun requestForecastByZipCode(zipCode: Long, date: Long) = forecastDbHelper.use {
+                 private val dataMapper: DbDataMapper = DbDataMapper()) : ForecastDataSource{
+    override fun requestForecastByZipCode(zipCode: Long, date: Long) = forecastDbHelper.use {
         val dailyRequest = "${DayForecastTable.CITY_ID} = ? AND ${DayForecastTable.DATE} >= ?"
         val dailyForecast = select(DayForecastTable.NAME)
                 .whereSimple(dailyRequest, zipCode.toString(), date.toString())
