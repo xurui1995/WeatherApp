@@ -1,5 +1,6 @@
 package xur.com.weatherapp.domain.datasource
 
+import xur.com.weatherapp.domain.model.Forecast
 import xur.com.weatherapp.domain.model.ForecastList
 
 /**
@@ -7,4 +8,5 @@ import xur.com.weatherapp.domain.model.ForecastList
  */
 interface ForecastDataSource {
     fun requestForecastByZipCode(zipCode: Long, date: Long): ForecastList?
+    fun requestDayForecast(id: Long): Forecast?
 }

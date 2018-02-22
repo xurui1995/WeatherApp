@@ -10,8 +10,7 @@ import xur.com.weatherapp.domain.model.Forecast
 import xur.com.weatherapp.domain.model.ForecastList
 import xur.com.weatherapp.extensions.ctx
 import xur.com.weatherapp.extensions.inflate
-import java.text.DateFormat
-import java.util.*
+import xur.com.weatherapp.extensions.toDateString
 
 /**
  * Created by xur on 2018/1/30.
@@ -34,7 +33,7 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
-                itemView.date.text = convertDate(date)
+                itemView.date.text = date.toDateString()
                 itemView.description.text = description
                 itemView.maxTemperature.text = "${high}º"
                 itemView.minTemperature.text = "${low}º"
@@ -42,9 +41,5 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
             }
         }
 
-        private fun convertDate(date: Long): String {
-            val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
-            return df.format(date)
-        }
     }
 }

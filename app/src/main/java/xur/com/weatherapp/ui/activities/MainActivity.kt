@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 import xur.com.weatherapp.R
 import xur.com.weatherapp.adapters.ForecastListAdapter
@@ -35,7 +35,14 @@ class MainActivity : AppCompatActivity() {
 
         doAsync {
             val result = RequestForecastCommand(94043).execute()
-            uiThread { forecastList.adapter =  ForecastListAdapter(result) {toast(it.description)}}
+            uiThread {
+                val adapter = ForecastListAdapter(result) {
+                    startActivity<DetailActivity>(DetailActivity.ID to it.id,
+                            DetailActivity.CITY_NAME to result.city)
+                }
+                forecastList.adapter = adapter
+                title = "${result.city} (${result.country})"
+            }
         }
     }
 }
